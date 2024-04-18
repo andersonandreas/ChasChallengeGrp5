@@ -1,25 +1,22 @@
-// import React from 'react';
-// import ReactDOM from 'react-dom';
-// import { BrowserRouter as Router, Route, Link, BrowserRouter } from 'react-router-dom'
-
-// function Header() {
-//     return <header id="header">Header Moment</header>
-// }
-
-// function Main() {
-//     return <main id="main">Main Content</main>
-// }
-
-// function Footer() {
-//     return <footer id="footer">Footer Content</footer>
-// }
-
-// function Routes() {
-//     return (
-//         <BrowserRouter>
-//         </BrowserRouter>
-//     )
-// }
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import Landing from './pages/1Landing';
+import Budget from './pages/3budget';
 
 
-// export default App;
+function App() {
+    return (
+        <div>
+            <Header />
+            <Routes>
+                <Route path='/' element={<Landing />} />
+                <Route path="budget" element={<Budget />} />
+            </Routes>
+            <Footer />
+        </div>
+    );
+}
+
+export default App;

@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 
 function Header() {
-
-    const [toggle, setToggle] = useState(false);
-
+    const [isOpen, setIsOpen] = useState(false);
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
@@ -12,8 +10,6 @@ function Header() {
     const isSignedIn = false;
 
     return (
-
-        //Flex space evenly
         <div>
             <div className="hamburger">
                 <button onClick={toggleMenu}>
@@ -31,7 +27,7 @@ function Header() {
             <img src="" alt="logo" />
             <div>
                 {!isSignedIn ? (
-                    <button onClick={handleSignIn}>Sign In</button>
+                    <button onClick={() => console.log('Sign In')}>Sign In</button>
                 ) : (
                     <div>
                         <img src="profile-pic.jpg" alt="Profile" />
