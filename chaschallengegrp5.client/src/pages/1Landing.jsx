@@ -11,7 +11,10 @@ function Landing() {
                 <label htmlFor="date">Date:</label>
                 <input type="date" name="date" />
             </div>
-            <div><Link to="/budget"><button type="submit">Submit</button></Link></div>
+            <div>
+                {/* <div><Link><button>Back</button></Link></div> */}
+                <div><Link to="/companion"><button type="submit">Submit</button></Link></div>
+            </div>
         </div>
 
 
