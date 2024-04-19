@@ -1,28 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
-const Budget = () => {
+function Budget() {
+    const handleBudgetChange = (value) => {
+        // budget change logic here :)
+    };
     return (
         <div>
-            <div className='progress'>
-                <p>Step 2 of 4</p>
-                <div className='line' />
-            </div>
-            <div className='box'>
-                <h2>Whats your budget?</h2>
-                <div className='btnContainer'>
-                    <button>Low</button>
-                    <button>Medium</button>
-                    <button>High</button>
-                    <button>None of your buisness</button>
-                </div>
+            <h1>What Is Your Budget?</h1>
+            <div>
+                <button type="button" onClick={() => handleBudgetChange('low')}>Low</button>
+                <button type="button" onClick={() => handleBudgetChange('medium')}>Medium</button>
+                <button type="button" onClick={() => handleBudgetChange('high')}>High</button>
+                <button type="button" onClick={() => handleBudgetChange('none_of_your_business')}>None of Your Business</button>
             </div>
             <div>
-                <div><Link to="/companion"><button>Back</button></Link></div>
-                <div><Link to="/budget"><button type="submit">Submit</button></Link></div>
+                <Link to="/party"><button type="button">Back</button></Link>
+                <Link to="/activites"><button type="button">Next</button></Link>
             </div>
         </div>
-    )
+    );
 }
-
 export default Budget;

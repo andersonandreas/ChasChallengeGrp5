@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Quest2 = () => {
+const Party = () => {
     return (
         <div>
             <div className='progress'>
@@ -24,4 +24,4 @@ const Quest2 = () => {
         </div>
     )
 }
-export default Quest2;
+export default Party;
