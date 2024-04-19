@@ -19,7 +19,7 @@ const Quest2 = () => {
             </div>
             <div>
                 <div><Link to="/"><button>Back</button></Link></div>
-                <div><Link to="/budgetx"><button type="submit">Submit</button></Link></div>
+                <div><Link to="/budget"><button type="submit">Submit</button></Link></div>
             </div>
         </div>
     )
