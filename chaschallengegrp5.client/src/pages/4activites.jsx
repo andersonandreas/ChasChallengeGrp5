@@ -18,7 +18,7 @@ function Activities() {
             </div>
             <div>
                 <Link to="/budget"><button type="button">Back</button></Link>
-                <Link to="/Food"><button type="button">Next</button></Link>
+                <Link to="/food"><button type="button">Next</button></Link>
             </div>
         </div>
     );
