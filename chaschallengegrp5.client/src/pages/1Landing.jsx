@@ -13,7 +13,7 @@ function Landing() {
             </div>
             <div>
                 {/* <div><Link><button>Back</button></Link></div> */}
-                <div><Link to="/companion"><button type="submit">Submit</button></Link></div>
+                <div><Link to="/party"><button type="submit">Submit</button></Link></div>
             </div>
         </div>
 
