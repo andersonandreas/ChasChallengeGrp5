@@ -1,9 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useAnswers } from '../components/AnswerContext';
+
 import { useSelection, Toggle } from '../components/button';
 function Budget() {
-    const handleBudgetChange = (value) => {
-        // budget change logic here :)
+    const { answers, setAnswers } = useAnswers();
+
+    const handleBudgetSelect = (choice) => {
+        setAnswers({ ...answers, budget: [...answers.budget, choice] })
     };
 
     const [selectedOption, handleSel] = useSelection();

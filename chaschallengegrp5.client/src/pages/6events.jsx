@@ -1,8 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useAnswers } from '../components/AnswerContext';
 
 function Events() {
-    const handleEventSelect = (event) => {};
+    const { answers, setAnswers } = useAnswers();
+
+    const handleEventSelect = (choice) => {
+        setAnswers({ ...answers, events: [...answers.events, choice]})
+    };
 
     return (
         <div>

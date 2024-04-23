@@ -1,8 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useAnswers } from '../components/AnswerContext';
 import { useSelection, Toggle } from '../components/button.jsx';
 
 const Party = () => {
+    const { answers, setAnswers } = useAnswers();
+
+    const handlePartySelect = (choice) => {
+        setAnswers({ ...answers, party: [...answers.party, choice] })
+    }
+
 
     const [selectedOption, handleSel] = useSelection();
 
