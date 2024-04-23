@@ -1,7 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useSelection, Toggle } from '../components/button.jsx';
 
 const Party = () => {
+
+    const [selectedOption, handleSel] = useSelection();
+
     return (
         <div>
             <div className='progress'>
@@ -11,10 +15,14 @@ const Party = () => {
             <div className='box'>
                 <h2>Who do you plan on traveling with on your next adventure?</h2>
                 <div className='btnContainer'>
-                    <button>Solo</button>
-                    <button>Couple</button>
-                    <button>Family</button>
-                    <button>Friends</button>
+                    {['Solo', 'Couple', 'Family', 'Friends'].map(option => (
+                        <Toggle
+                            key={option}
+                            value={option}
+                            selected={selectedOption === option}
+                            handleSel={handleSel}
+                        />
+                    ))}
                 </div>
             </div>
             <div>
