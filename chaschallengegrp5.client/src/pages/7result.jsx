@@ -1,60 +1,31 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useAnswers } from '../components/AnswerContext';
 
 function Result() {
+    const { answers } = useAnswers();
 
+    const categories = [
+        {title: 'You plan to travel with...', key: 'party'},
+        {title: 'Your budget is...', key: 'budget'},
+        {title: 'You want to explore...', key: 'activities' },
+        {title: 'You want to eat...', key: 'food'},
+        {title: 'The events you want to see are...', key: 'events'}
+    ];
 
     return (
         <div>
-            <div>
-                <button>Edit</button>
-            </div>
+            <div>Edit</div>
+
+            {categories.map( category => (
+                <div>
+                    <h1>{category.title}</h1>
+                    {answers[category.key].map(item => <button key={item}>{item}</button>)}
+                </div>
+            ))}
 
             <div>
-                <div>
-                    <h1>You plan to travel with...</h1>
-                    {party.map(x => {
-                        return (
-                            <button>{x}</button>
-                        )
-                    })}
-                </div>
-                <div>
-                    <h1>Your budget is...</h1>
-                    {budget.map(x => {
-                        return (
-                            <button>{x}</button>
-                        )
-                    })}
-                </div>
-                <div>
-                    <h1>You want to explore...</h1>
-                    {activities.map(x => {
-                        return (
-                            <button>{x}</button>
-                        )
-                    })}
-                </div>
-                <div>
-                    <h1>You want to eat...</h1>
-                    {food.map(x => {
-                        return (
-                            <button>{x}</button>
-                        )
-                    })}
-                </div>
-                <div>
-                    <h1>The events you want to see are...</h1>
-                    {events.map(x => {
-                        return (
-                            <button>{x}</button>
-                        )
-                    })}
-                </div>
-            </div>
-
-            <div>
-                <Link to="/events"><button type="button">Back</button></Link>
+                <div><Link to="/"><button>Exit</button></Link></div>
                 <Link to=""><button type="button">CTA</button></Link>
             </div>
         </div>

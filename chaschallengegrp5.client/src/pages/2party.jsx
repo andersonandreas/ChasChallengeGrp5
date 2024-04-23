@@ -1,20 +1,26 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useAnswers } from '../components/AnswerContext';
 
 const Party = () => {
+    const { answers, setAnswers } = useAnswers();
+
+    const handlePartySelect = (choice) => {
+        setAnswers({ ...answers, party: [...answers.party, choice]})
+    }
+
     return (
         <div>
-            <div className='progress'>
+            <div className='progress'>  
                 <p>Step 2 of 4</p>
                 <div className='line' />
             </div>
             <div className='box'>
                 <h2>Who do you plan on traveling with on your next adventure?</h2>
                 <div className='btnContainer'>
-                    <button>Solo</button>
-                    <button>Couple</button>
-                    <button>Family</button>
-                    <button>Friends</button>
+                    {['Solo', 'Couple', 'Family', 'Friends'].map(choice => (
+                        <button key={choice} onClick={() => handlePartySelect(choice)}>{choice}</button>
+                    ))}
                 </div>
             </div>
             <div>

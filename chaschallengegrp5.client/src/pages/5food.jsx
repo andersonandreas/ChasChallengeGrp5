@@ -1,9 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useAnswers } from '../components/AnswerContext';
+
 function Food() {
-    const handleFoodSelect = (food) => {
-        // food selection logic :)
+    const { answers, setAnswers } = useAnswers();
+
+    const handleFoodSelect = (choice) => {
+        setAnswers({ ...answers, food: [...answers.food, choice]})
     };
+
     return (
         <div>
             <h1>What Kind of Food Do You Want?</h1>

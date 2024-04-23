@@ -1,20 +1,25 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useAnswers } from '../components/AnswerContext';
+
 function Activities() {
-    const handleActivitySelect = (activity) => {
-        // Handle activity selection :)
+    const { answers, setAnswers } = useAnswers();
+
+    const handleActivitiesSelect = (choice) => {
+        setAnswers({ ...answers, activities: [...answers.activities, choice]})
     };
+
     return (
         <div>
             <h1>What Activities Are You Interested In?</h1>
             <div>
-                <button type="button" onClick={() => handleActivitySelect('stränder')}>Stränder</button>
-                <button type="button" onClick={() => handleActivitySelect('nattliv')}>Nattliv</button>
-                <button type="button" onClick={() => handleActivitySelect('mat')}>Mat</button>
-                <button type="button" onClick={() => handleActivitySelect('adrenalin_höjare')}>Adrenalin Höjare</button>
-                <button type="button" onClick={() => handleActivitySelect('sevärdigheter')}>Sevärdigheter</button>
-                <button type="button" onClick={() => handleActivitySelect('evenemang')}>Evenemang</button>
-                <button type="button" onClick={() => handleActivitySelect('nöjesparker')}>Nöjesparker</button>
+                <button type="button" onClick={() => handleActivitiesSelect('stränder')}>Stränder</button>
+                <button type="button" onClick={() => handleActivitiesSelect('nattliv')}>Nattliv</button>
+                <button type="button" onClick={() => handleActivitiesSelect('mat')}>Mat</button>
+                <button type="button" onClick={() => handleActivitiesSelect('adrenalin_höjare')}>Adrenalin Höjare</button>
+                <button type="button" onClick={() => handleActivitiesSelect('sevärdigheter')}>Sevärdigheter</button>
+                <button type="button" onClick={() => handleActivitiesSelect('evenemang')}>Evenemang</button>
+                <button type="button" onClick={() => handleActivitiesSelect('nöjesparker')}>Nöjesparker</button>
             </div>
             <div>
                 <Link to="/budget"><button type="button">Back</button></Link>
