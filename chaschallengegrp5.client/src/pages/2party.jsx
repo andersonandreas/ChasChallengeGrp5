@@ -22,12 +22,13 @@ const Party = () => {
             <div className='box'>
                 <h2>Who do you plan on traveling with on your next adventure?</h2>
                 <div className='btnContainer'>
-                    {['Solo', 'Couple', 'Family', 'Friends'].map(option => (
+                    {['Solo', 'Couple', 'Family', 'Friends'].map(choice => (
                         <Toggle
-                            key={option}
-                            value={option}
-                            selected={selectedOption === option}
+                            key={choice}
+                            value={choice}
+                            selected={selectedOption === choice}
                             handleSel={handleSel}
+                            handleChoice={handlePartySelect}
                         />
                     ))}
                 </div>

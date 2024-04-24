@@ -1,25 +1,31 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAnswers } from '../components/AnswerContext';
+import { useSelection, Toggle } from '../components/button';
 
 function Activities() {
     const { answers, setAnswers } = useAnswers();
 
     const handleActivitiesSelect = (choice) => {
-        setAnswers({ ...answers, activities: [...answers.activities, choice]})
+        setAnswers({ ...answers, activities: [...answers.activities, choice] })
     };
+
+    const [selectedOption, handleSel] = useSelection();
+
 
     return (
         <div>
             <h1>What Activities Are You Interested In?</h1>
-            <div>
-                <button type="button" onClick={() => handleActivitiesSelect('stränder')}>Stränder</button>
-                <button type="button" onClick={() => handleActivitiesSelect('nattliv')}>Nattliv</button>
-                <button type="button" onClick={() => handleActivitiesSelect('mat')}>Mat</button>
-                <button type="button" onClick={() => handleActivitiesSelect('adrenalin_höjare')}>Adrenalin Höjare</button>
-                <button type="button" onClick={() => handleActivitiesSelect('sevärdigheter')}>Sevärdigheter</button>
-                <button type="button" onClick={() => handleActivitiesSelect('evenemang')}>Evenemang</button>
-                <button type="button" onClick={() => handleActivitiesSelect('nöjesparker')}>Nöjesparker</button>
+            <div className='btnContainer'>
+                {['Stränder', 'Nattliv', 'Mat', 'Adrenalin Höjare', 'Sevärdigheter', 'Evenemang', 'Nöjesparker'].map(choice => (
+                    <Toggle
+                        key={choice}
+                        value={choice}
+                        selected={selectedOption === choice}
+                        handleSel={handleSel}
+                        handleChoice={handleActivitiesSelect}
+                    />
+                ))}
             </div>
             <div>
                 <Link to="/budget"><button type="button">Back</button></Link>

@@ -10,12 +10,16 @@ const useSelection = (initialState = null) => {
     return [selected, handleSel];
 };
 
-const Toggle = ({ value, selected, handleSel }) => {
+const Toggle = ({ value, selected, handleSel, handleChoice }) => {
     const buttonStyle = selected ? { backgroundColor: 'blue', color: 'white' } : {};
 
+    const handleClick = () => {
+        handleSel(value);
+        handleChoice(value);
+    }
 
     return (
-        <button style={buttonStyle} onClick={() => handleSel(value)}>{value}</button>
+        <button style={buttonStyle} onClick={handleClick}>{value}</button>
     )
 }
 export { useSelection, Toggle };
