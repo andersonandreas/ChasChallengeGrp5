@@ -1,3 +1,5 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import React from 'react';
 import { Routes, Route, Outlet } from 'react-router-dom';
 import Header from './components/Header';
