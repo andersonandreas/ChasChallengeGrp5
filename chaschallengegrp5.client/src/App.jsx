@@ -1,5 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+
+
 import React from 'react';
 import { Routes, Route, Outlet } from 'react-router-dom';
 import Header from './components/Header';
@@ -19,7 +21,6 @@ import { AuthProvider } from './components/Auth';
 function App() {
     return (
         <div>
-
             <Routes>
                 <Route path="signup" element={<Signup />} />
                 <Route path="login" element={<Login />} />
