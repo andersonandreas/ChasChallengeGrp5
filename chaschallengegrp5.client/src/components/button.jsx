@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Button from 'react-bootstrap/Button';
 
 const useSelection = (initialState = null) => {
     const [selected, setSelected] = useState(initialState);
@@ -19,7 +20,7 @@ const Toggle = ({ value, selected, handleSel, handleChoice }) => {
     }
 
     return (
-        <button style={buttonStyle} onClick={handleClick}>{value}</button>
+        <Button variant="primary" style={buttonStyle} onClick={handleClick}>{value} </Button>
     )
 }
 export { useSelection, Toggle };
