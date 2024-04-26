@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import React from 'react';
 import { Routes, Route, Outlet } from 'react-router-dom';
+import BootNavbar from './components/BootNavbar';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Landing from './pages/1Landing';
@@ -44,7 +45,8 @@ function App() {
 function Layout() {
     return (
         <>
-            <Header />
+            <BootNavbar />
+            {/* <Header /> */}
             <Outlet />
             <Footer />
         </>
