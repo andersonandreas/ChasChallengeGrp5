@@ -1,14 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAnswers } from '../components/AnswerContext';
-import { useLocStorage } from '../components/LocStorage';
+import { useToggleContext } from '../components/button';
 
 function Result() {
     const { answers } = useAnswers();
-    const [formData, setFormData] = useLocStorage('formData');
+    const { clearToggles } = useToggleContext();
+    console.log(answers); // Add this in your Result component to check the data
+
 
     const clear = () => {
-        localStorage.removeItem('formData');
+        clearToggles();
     };
 
     const categories = [
@@ -26,7 +28,7 @@ function Result() {
             {categories.map(category => (
                 <div>
                     <h1>{category.title}</h1>
-                    {answers[category.key].map(item => <button key={item}>{item}</button>)}
+                    {answers[category.key].map((item, index) => <button key={`${category.key}-${index}`}>{item}</button>)}
                 </div>
             ))}
 

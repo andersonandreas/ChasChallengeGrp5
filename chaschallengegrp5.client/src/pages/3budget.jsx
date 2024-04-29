@@ -1,47 +1,32 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useAnswers } from '../components/AnswerContext';
-import { useSelection, Toggle } from '../components/button';
+import { Toggle } from '../components/button';
 import { useLocStorage } from '../components/LocStorage';
+import { useAnswers } from '../components/AnswerContext';
 
 function Budget() {
-    const [selectedOption, handleSel] = useLocStorage('budgetSel');
-    const [formData, setFormData] = useLocStorage('formData', {
-        country: '',
-        city: '',
-        startDate: '',
-        endDate: '',
-        party: [],
-        budget: []
-    });
     const { answers, setAnswers } = useAnswers();
 
     const handleBudgetSelect = (choice) => {
-        setFormData({
-            ...formData,
-            budget: formData.budget ? [...formData.budget, choice] : [choice]
-        });
+        const updatedBudget = answers.budget.includes(choice) ?
+            answers.budget.filter(item => item !== choice) :
+            [...answers.budget, choice];
         setAnswers({
             ...answers,
-            budget: answers.budget ? [...answers.budget, choice] : [choice]
+            budget: updatedBudget
         });
         handleSel(choice);
     };
-
-
-
 
     return (
         <div>
             <h1>What Is Your Budget?</h1>
             <div className='btnContainer'>
-                {['Low', 'Medium', 'High', 'None of your buisness'].map(choice => (
+                {['Low', 'Medium', 'High', 'None of your business'].map(choice => (
                     <Toggle
                         key={choice}
                         value={choice}
-                        selected={selectedOption === choice}
-                        handleSel={handleSel}
-                        handleChoice={handleBudgetSelect}
+                        handleChoice={() => handleBudgetSelect(choice)}
                     />
                 ))}
             </div>
@@ -51,5 +36,6 @@ function Budget() {
             </div>
         </div>
     );
-}
+};
+
 export default Budget;

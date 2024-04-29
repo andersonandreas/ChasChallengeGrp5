@@ -5,27 +5,15 @@ import { Toggle } from '../components/button';
 import { useLocStorage } from '../components/LocStorage';
 
 function Food() {
-    const [selectedOption, handleSel] = useLocStorage('foodSel');
-    const [formData, setFormData] = useLocStorage('formData', {
-        country: '',
-        city: '',
-        startDate: '',
-        endDate: '',
-        party: [],
-        budget: [],
-        Activities: [],
-        Food: [],
-    });
     const { answers, setAnswers } = useAnswers();
 
     const handleFoodSelect = (choice) => {
-        setFormData({
-            ...formData,
-            food: formData.food ? [...formData.food, choice] : [choice]
-        });
+        const updatedFood = answers.food.includes(choice) ?
+            answers.food.filter(item => item !== choice) :
+            [...answers.food, choice];
         setAnswers({
             ...answers,
-            food: answers.food ? [...answers.food, choice] : [choice]
+            food: updatedFood
         });
         handleSel(choice);
     };
@@ -38,9 +26,7 @@ function Food() {
                     <Toggle
                         key={choice}
                         value={choice}
-                        selected={selectedOption === choice}
-                        handleSel={handleSel}
-                        handleChoice={handleFoodSelect}
+                        handleChoice={() => handleBudgetSelect(choice)}
                     />
                 ))}
             </div>

@@ -5,27 +5,15 @@ import { Toggle } from '../components/button';
 import { useLocStorage } from '../components/LocStorage';
 
 function Events() {
-    const [selectedOption, handleSel] = useLocStorage('eventSel');
-    const [formData, setFormData] = useLocStorage('formData', {
-        country: '',
-        city: '',
-        startDate: '',
-        endDate: '',
-        party: [],
-        budget: [],
-        Activities: [],
-        Events: []
-    });
     const { answers, setAnswers } = useAnswers();
 
     const handleEventSelect = (choice) => {
-        setFormData({
-            ...formData,
-            event: formData.event ? [...formData.event, choice] : [choice]
-        });
+        const updatedEvent = answers.events.includes(choice) ?
+            answers.events.filter(item => item !== choice) :
+            [...answers.events, choice];
         setAnswers({
             ...answers,
-            event: answers.event ? [...answers.event, choice] : [choice]
+            events: updatedEvent
         });
         handleSel(choice);
     };
@@ -37,9 +25,7 @@ function Events() {
                     <Toggle
                         key={choice}
                         value={choice}
-                        selected={selectedOption === choice}
-                        handleSel={handleSel}
-                        handleChoice={handleEventSelect}
+                        handleChoice={() => handleBudgetSelect(choice)}
                     />
                 ))}
             </div>

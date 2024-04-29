@@ -5,6 +5,7 @@ import './index.css'
 import { BrowserRouter as Router } from 'react-router-dom';
 import { AuthProvider } from './components/Auth';
 import { AnswerProvider } from './components/AnswerContext.jsx';
+import { ToggleProvider } from './components/button.jsx';
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -12,7 +13,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <Router>
       <AuthProvider>
         <AnswerProvider>
-          <App />
+          <ToggleProvider>
+            <App />
+          </ToggleProvider>
         </AnswerProvider>
       </AuthProvider>
     </Router>
