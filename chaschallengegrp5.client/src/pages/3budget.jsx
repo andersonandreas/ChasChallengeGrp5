@@ -1,17 +1,35 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAnswers } from '../components/AnswerContext';
-
 import { useSelection, Toggle } from '../components/button';
+import { useLocStorage } from '../components/LocStorage';
+
 function Budget() {
+    const [selectedOption, handleSel] = useLocStorage('budgetSel');
+    const [formData, setFormData] = useLocStorage('formData', {
+        country: '',
+        city: '',
+        startDate: '',
+        endDate: '',
+        party: [],
+        budget: []
+    });
     const { answers, setAnswers } = useAnswers();
 
     const handleBudgetSelect = (choice) => {
-        setAnswers({ ...answers, budget: [...answers.budget, choice] })
+        setFormData({
+            ...formData,
+            budget: formData.budget ? [...formData.budget, choice] : [choice]
+        });
+        setAnswers({
+            ...answers,
+            budget: answers.budget ? [...answers.budget, choice] : [choice]
+        });
+        handleSel(choice);
     };
 
 
-    const [selectedOption, handleSel] = useSelection();
+
 
     return (
         <div>

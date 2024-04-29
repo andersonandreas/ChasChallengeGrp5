@@ -1,17 +1,34 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAnswers } from '../components/AnswerContext';
-import { useSelection, Toggle } from '../components/button';
+import { Toggle } from '../components/button';
+import { useLocStorage } from '../components/LocStorage';
 
 function Events() {
+    const [selectedOption, handleSel] = useLocStorage('eventSel');
+    const [formData, setFormData] = useLocStorage('formData', {
+        country: '',
+        city: '',
+        startDate: '',
+        endDate: '',
+        party: [],
+        budget: [],
+        Activities: [],
+        Events: []
+    });
     const { answers, setAnswers } = useAnswers();
 
     const handleEventSelect = (choice) => {
-        setAnswers({ ...answers, events: [...answers.events, choice] })
+        setFormData({
+            ...formData,
+            event: formData.event ? [...formData.event, choice] : [choice]
+        });
+        setAnswers({
+            ...answers,
+            event: answers.event ? [...answers.event, choice] : [choice]
+        });
+        handleSel(choice);
     };
-
-    const [selectedOption, handleSel] = useSelection();
-
     return (
         <div>
             <h1>What kind of events are you interested in?</h1>

@@ -1,18 +1,33 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAnswers } from '../components/AnswerContext';
-import { useSelection, Toggle } from '../components/button.jsx';
+import { Toggle } from '../components/button.jsx';
+import { useLocStorage } from '../components/LocStorage.jsx';
+
 
 const Party = () => {
+    const [selectedOption, handleSel] = useLocStorage('partySel');
+    const [formData, setFormData] = useLocStorage('formData', {
+        country: '',
+        city: '',
+        startDate: '',
+        endDate: '',
+        party: []
+    });
+
     const { answers, setAnswers } = useAnswers();
 
     const handlePartySelect = (choice) => {
-        setAnswers({ ...answers, party: [...answers.party, choice] })
-    }
-
-
-    const [selectedOption, handleSel] = useSelection();
-
+        setFormData({
+            ...formData,
+            party: formData.party ? [...formData.party, choice] : [choice]
+        });
+        setAnswers({
+            ...answers,
+            party: answers.party ? [...answers.party, choice] : [choice]
+        });
+        handleSel(choice);
+    };
     return (
         <div>
             <div className='progress'>

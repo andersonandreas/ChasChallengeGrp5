@@ -1,17 +1,33 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAnswers } from '../components/AnswerContext';
-import { useSelection, Toggle } from '../components/button';
+import { Toggle } from '../components/button';
+import { useLocStorage } from '../components/LocStorage';
 
 function Activities() {
+    const [selectedOption, handleSel] = useLocStorage('activitiesSel');
+    const [formData, setFormData] = useLocStorage('formData', {
+        country: '',
+        city: '',
+        startDate: '',
+        endDate: '',
+        party: [],
+        budget: [],
+        Activities: [],
+    });
     const { answers, setAnswers } = useAnswers();
 
     const handleActivitiesSelect = (choice) => {
-        setAnswers({ ...answers, activities: [...answers.activities, choice] })
+        setFormData({
+            ...formData,
+            activities: formData.activities ? [...formData.activities, choice] : [choice]
+        });
+        setAnswers({
+            ...answers,
+            activities: answers.activities ? [...answers.activities, choice] : [choice]
+        });
+        handleSel(choice);
     };
-
-    const [selectedOption, handleSel] = useSelection();
-
 
     return (
         <div>
